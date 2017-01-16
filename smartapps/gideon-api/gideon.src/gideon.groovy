@@ -17,7 +17,7 @@ definition(
     name: "Gideon",
     namespace: "gideon.api",
     author: "Braindrain Solutions ltd",
-    description: "Gideon Smart Home SmartApp allows you to connect and control all of your SmartThings devices through the Gideon AI app, making your SmartThings devices even smarter.",
+    description: "Gideon Smart Home SmartApp allows you to connect and control all of your SmartThings devices through the Gideon app, making your SmartThings devices even smarter.",
     category: "Family",
     iconUrl: "http://s33.postimg.org/t77u7y7v3/logo.png",
     iconX2Url: "http://s33.postimg.org/t77u7y7v3/logo.png",
