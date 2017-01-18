@@ -50,9 +50,10 @@ preferences {
     section("Control these presence sensors...") {
     	input "presence_sensors", "capability.presenceSensor", multiple:true, required:false
     }
-    section("Control these outlets...") {
+/** section("Control these outlets...") {
     	input "outlets", "capability.switch", multiple:true, required:false
     }
+*/
      section("Control these power meters...") {
         input "meters", "capability.powerMeter", multiple:true, required:false
     }
@@ -184,7 +185,7 @@ mappings {
       GET: "getMotionStatus"
     ]
   }
-  	path("/outlets/:id") {
+/**  	path("/outlets/:id") {
     action: [
       GET: "getOutletStatus"
     ]
@@ -199,6 +200,7 @@ mappings {
       GET: "turnOffOutlet"
     ]
   }
+*/
   	path("/switches/turnon/:id") {
     action: [
       GET: "turnOnSwitch"
@@ -226,12 +228,12 @@ def getAllDevices() {
     def water_sensors_list = water_sensors.collect{device(it,"Water Sensor")}
     def presences_list = presence_sensors.collect{device(it,"Presence")}
     def motions_list = motions.collect{device(it,"Motion")}
-    def outlets_list = outlets.collect{device(it,"Outlet")}
+  /**  def outlets_list = outlets.collect{device(it,"Outlet")} */
     def switches_list = switches.collect{device(it,"Switch")}
     def temp_list = temperature_sensors.collect{device(it,"Temperature")}
     def meters_list = meters.collect{device(it,"Power Meters")}
     def battery_list = batteries.collect{device(it,"Batteries")}
-    return smokes_list + contact_list + water_sensors_list + shades_list + garage_list + locks_list + presences_list + motions_list + outlets_list + switches_list + temp_list + meters_list + battery_list
+    return smokes_list + contact_list + water_sensors_list + shades_list + garage_list + locks_list + presences_list + motions_list + switches_list + temp_list + meters_list + battery_list
 }
 
 //contact sensors
@@ -423,6 +425,7 @@ def getMotionStatus() {
 }
 
 //OUTLET
+/**
 def getOutletStatus() {
 	
     def device = outlets.find { it.id == params.id }
@@ -433,7 +436,7 @@ def getOutletStatus() {
         	return [Device_state: device.currentSwitch] + watt
   }
 }
-
+*/
 def getMeterStatus() {
 	
     def device = meters.find { it.id == params.id }
@@ -454,6 +457,7 @@ def getMeterStatus(id) {
   }
 }
 
+/**
 def turnOnOutlet() {
     def device = outlets.find { it.id == params.id }
     if (command){
@@ -481,7 +485,7 @@ def turnOffOutlet() {
         }
     }
 }
-
+*/
 //SWITCH
 def getSwitchStatus() {
 	def device = switches.find { it.id == params.id }
