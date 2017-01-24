@@ -517,7 +517,7 @@ def turnOffSwitch() {
             httpError(404, "Device not found")
         } else {
             
-            device.on();
+            device.off();
                   
             return [Device_id: params.id, result_action: "200"]
         }
