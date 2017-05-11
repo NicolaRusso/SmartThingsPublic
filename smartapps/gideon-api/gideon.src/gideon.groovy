@@ -14,7 +14,7 @@
  *
  */
 definition(
-    name: "Gideon",
+    name: "Gideon Smart Home",
     namespace: "gideon.api",
     author: "Braindrain Solutions ltd",
     description: "Gideon Smart Home SmartApp allows you to connect and control all of your SmartThings devices through the Gideon app, making your SmartThings devices even smarter.",
@@ -322,7 +322,6 @@ def setCoolTemp() {
             }
        }
 }
-
 def setHeatTemp() {
 	def device = thermostats.find { it.id == params.id }
         if (!device) {
@@ -337,7 +336,6 @@ def setHeatTemp() {
             }
        }
 }
-
 def setFanMode() {
 	def device = thermostats.find { it.id == params.id }
         if (!device) {
@@ -352,7 +350,6 @@ def setFanMode() {
             }
        }
 }
-
 def setThermostatMode() {
 	def device = thermostats.find { it.id == params.id }
         if (!device) {
@@ -367,7 +364,6 @@ def setThermostatMode() {
             }
        }
 }
-
 def getThermostatStatus() {
 	def device = thermostats.find{ it.id == params.id }
     if (!device) {
@@ -678,7 +674,7 @@ def getMotionStatus() {
 
 //OUTLET
 def getOutletStatus() {
-	
+
     def device = outlets.find { it.id == params.id }
     if (!device) {
             device = switches.find { it.id == params.id }
@@ -692,7 +688,7 @@ def getOutletStatus() {
 }
 
 def getMeterStatus() {
-	
+
     def device = meters.find { it.id == params.id }
    	if (!device) {
             httpError(404, "Device not found")
@@ -702,7 +698,7 @@ def getMeterStatus() {
 }
 
 def getMeterStatus(id) {
-	
+
     def device = meters.find { it.id == id }
    	if (!device) {
             return []
@@ -769,7 +765,6 @@ def turnOffSwitch() {
         } else {
             
             device.off();
-                  
             return [Device_id: params.id, result_action: "200"]
         }
 }
@@ -793,6 +788,7 @@ def getTempSensorsStatus(id) {
             return []
         } else {
         	def bat = getBatteryStatus(device.id)
-        	return [temperature: device.currentValue('temperature')] + bat
+            def scale = [Scale: location.temperatureScale]
+        	return [temperature: device.currentValue('temperature')] + bat + scale
    		}
    }
